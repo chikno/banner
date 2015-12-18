@@ -1,0 +1,88 @@
+.pointer{cursor:pointer;}
+.center{text-align:center;}
+.right{text-align:right;}
+.pull-right{float:right;}
+.f25{font-size:25px !important;}
+.controls{border-bottom:1px solid #232323;margin:0;padding-top: 5px !important;display:block;margin:0;}
+.control-item{display:inline-block;padding: 0 10px 10px;text-align:center;margin:2px 5px;}
+.control-item i{display:block;font-size:25px;color:#cd0a0a;}
+
+.preview{display:inline-block;text-decoration:none;background:#333333;margin:0 5px;border:1px solid #000000; color:#FFFFFF;font-size:15px;padding-top:16px;padding-bottom: 16px;}
+.save{display: block;text-decoration:none;background:#cd0a0a;margin:0 5px;border:1px solid #740505; color:#FFFFFF;font-size:15px;padding-top:16px;padding-bottom: 16px;}
+.save:hover,.preview:hover{color:#FFFFFF;text-decoration:none;}
+.save .fa,.preview .fa{margin-right:10px;}
+
+.listLayers{min-height:400px;}
+.listLayers .layer{margin:3px;border:1px solid #000000;padding:10px 15px;display:block;}
+
+.innerRender{min-height:400px;background:#CCCCCC;border-right:1px solid #232323;border-left:1px solid #232323;}
+.innerRender #slider{position:relative;margin:2% auto;border:1px solid #000000;box-shadow:0 0 1px rgba(0,0,0,0.1),0 0 5px rgba(0,0,0,0.01);width:300px;height:250px;background:#FFFFFF;}
+
+.bannerControls{min-height:400px;}
+.bannerControls .banner-control{margin: 10px 0;text-align:left;display:block;}
+.bannerControls .banner-control label{color:#cd0a0a;width: 45%;}
+.bannerControls .banner-control select,
+.bannerControls .banner-control input[type="texte"]{width: 50%;display:inline;}
+
+.textControls{min-height:400px;}
+.textControls .text-control{margin:10px;text-align:left;display:block;}
+.textControls .text-control label{color:#cd0a0a;width:30%;}
+.textControls .text-control select,
+.textControls .text-control input[type="texte"]{width:60%;display:inline;}
+
+.listSlides{position:relative;float:left;width:100%;display:block;padding:15px;border-top:1px solid #232323;}
+.listSlides .slide-item {padding:0 5px;}
+.listSlides .slide-item .innerSlide{display:block;line-height:80px;height:80px;border:1px solid #000000;text-align:center;position:relative;}
+.listSlides .slide-item .delete{position:absolute;right:3px;top:3px;color:#cd0a0a;font-size:16px;}
+.listSlides .slide-item .timeAnimation{position:absolute;color:#cd0a0a;font-size:16px;bottom:5px;right:3px;}
+.img-item-container{width:33.33%;display:inline-block;padding:10px 15px;}
+.selected img{cursor: default;transform:scale(1.2);-webkit-box-shadow: 0 0 10px 2px rgba(252, 18, 36, 0.5);-moz-box-shadow: 0 0 10px 2px rgba(252, 18, 36, 0.5);box-shadow: 0 0 10px 2px rgba(252, 18, 36, 0.5);}
+
+#slider img{width:100%;}
+
+.textControls {
+    position: absolute;
+    z-index: 10000000;
+    right: 0;
+    top: 65px;
+    background: #fff;
+}
+
+.bannerControls {
+    position: absolute;
+    z-index: 100;
+    right: 0;
+    top: 65px;
+    background: #fff;
+}
+
+.text input{
+    border: none;
+}
+
+.colorpicker.dropdown {
+    position: absolute;
+    z-index: 1000000000;
+}
+
+.text {
+    width: auto;
+}
+
+.ui-draggable {
+    cursor:move;
+}
+
+.activeFontstyle {
+    color:#ff3399;
+}
+
+.bold {
+    font-weight: bold;
+}
+.italic {
+    font-style: italic;
+}
+.underline {
+    text-decoration: underline;
+}

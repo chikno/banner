@@ -1,0 +1,49 @@
+.noStyle {
+    padding: 0;
+
+}
+
+
+.noStyle li {
+    list-style: none;
+}
+
+.size {
+    box-shadow: 0 0 2px 0px ;
+    padding: 10px;
+}
+
+.noMargin{
+    margin: 0 !important;
+}
+
+
+.sizeName {
+    color: rgb(211, 51, 51);
+}
+
+.sizeItem  {
+    background: #000;
+    color:#fff;
+    padding: 5px;
+}
+
+.marginTopSmall {
+    margin-top:20px;
+}
+.marginTop {
+    margin-top: 40px;
+} 
+.marginTopLarge {
+    margin-top:80px;
+}
+
+.sizeFilter {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
+.fullWidth {
+    width: 100% !important;
+}

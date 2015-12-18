@@ -1,0 +1,207 @@
+<section>
+    <header class="controls col-md-12 noPadding">
+        <div class="col-md-8 noPadding">
+            <div class="newBanner pointer control-item"><i class="fa fa-plus"></i><span>Nouvelle bannière</span></div>
+            <div class="bannerSetting pointer control-item" ng-click="layerCTRL.clearSelected()" ><i class="fa fa-cog"></i><span> paramêtres</span></div>
+            <div class="newSlide pointer control-item"
+                 ng-click="bannerCTRL.addSlide()">
+                <i class="fa fa-file-o"></i><span>Ajouter slide</span>
+            </div>
+            <div class="newTexte pointer control-item"
+                 ng-click="textCTRL.createText();
+                             slideCTRL.selected.addText(textCTRL.selected);
+                             layerCTRL.select(textCTRL.selected)
+                 ">
+                <i class="fa fa-font"></i><span>Ajouter texte</span>
+            </div>
+            <div class="newImage pointer control-item" ng-click="createTemplateCTRL.openImageSelection(); layerCTRL.clearSelected()"><i class="fa fa-picture-o"></i><span>Ajouter image</span></div>
+            <div class="newlien pointer control-item"><i class="fa fa-link"></i><span>Ajouter lien</span></div>
+            <div class="newButton pointer control-item"><i class="fa fa-square-o"></i><span>Ajouter bouton</span></div>
+        </div>
+        <div class="pull-right col-md-4 right noPadding">
+            <a href="#/preview" class="preview pull-right col-md-4 center h70"><i class="fa fa-play-circle"></i>Visualiser</a>
+            <a href="#/publish" class="save pull-right col-md-7 center h70"><i class="fa fa-save"></i>Enregistrer et publier</a>
+        </div>
+
+    </header>
+    <section  class="sliderContainer">
+        <aside class="listLayers col-md-2 noPadding center">
+            <label>Layers</label>
+
+            <div ng-click="layerCTRL.select(layer)" class="layer layer-{{layer.number}} pointer" ng-repeat="layer in slideCTRL.selected.layers track by $index">
+                <div>
+                    <img class="img-responsive" ng-src="{{layer.url}}" />
+                    {{layer.value| characters:20 }}
+                </div>
+
+            </div>
+        </aside>
+        <article class="innerRender col-md-7 noPadding">
+            <div  ng-style="{
+                        'width':bannerCTRL.selected.width + 'px',
+                                'height'       :bannerCTRL.selected.height + 'px',
+                                'border-width': bannerCTRL.selected.borderWidth,
+                                'border-color': bannerCTRL.selected.borderColor,
+                                'border-style': bannerCTRL.selected.borderStyle,
+                                'background-color' : bannerCTRL.selected.backgroundColor
+                        }"
+                  class="finalRender" id="slider" >
+                {{selected}}
+                <div class="layerContent imageLayer slide={{$index}}">
+                    <img resizable dragable src="{{imageCTRL.selected.url}}" alt="{{imageCTRL.selected.title}}" />
+                </div>
+
+                <span ng-style="{'color' : textCTRL.selected.color}" ng-class="{bold : textCTRL.selected.isBold, italic : textCTRL.selected.isItalic, 'underline': textCTRL.selected.isUnderline}">
+                    <span  dragable
+                           ng-style="
+                                       {
+                                             'color' : textCTRL.selected.color,
+                                               'background-color' : textCTRL.selected.backgroundColor,
+                                               'font-size' : textCTRL.selected.fontSize,
+                                               'padding-top' : textCTRL.selected.paddingTopBottom,
+                                               'padding-left' :textCTRL.selected.paddingLeftRight,
+                                               'padding-bottom' : textCTRL.selected.paddingTopBottom,
+                                               'padding-right' :textCTRL.selected.paddingLeftRight
+                                       }" >
+                        {{ textCTRL.selected.value}}
+                    </span>
+                </span>
+            </div>
+        </article>
+        <div>
+            <aside class="bannerControls col-md-3 noPadding center">
+                <div class="params">
+                    <label>Paramêtres de la bannière</label>
+                    <div class="banner-control banner-control-item col-md-12 no-Padding">
+                        <div class="col-md-6">
+                            <label>Largeur</label>
+                            <select  ng-model="bannerCTRL.selected.width" name="bannerWidth" class="form-control">
+                                <option ng-repeat="size in bannerCTRL.sizes.getSizes()" value="{{size.width}}">{{size.width}} </option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Hauteur</label>
+                            <select ng-model="bannerCTRL.selected.height" name="bannerHeight" class="form-control">
+                                <option ng-repeat="size in bannerCTRL.sizes.getSizes()" value=" {{size.height}}"> {{size.height}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div ng-if="!slideCTRL.isBgTrue"  class="banner-control banner-control-bg col-md-12 no-Padding">
+                        <label>Background color : </label>
+
+                        <switch  name="switchBgColor" ng-model="bannerCTRL.selected.isBgTrue" on="on" off="off" class="red"></switch>
+                        <div ng-if="bannerCTRL.selected.isBgTrue" class="colorpicker1">
+                            <input class="form-control" colorpicker="hex" colorpicker-with-input="false" type="text" style="background:{{bannerCTRL.selected.backgroundColor}};"  ng-model="bannerCTRL.selected.backgroundColor" />
+                        </div>
+                    </div>
+
+                    <div ng-if="!slideCTRL.isBorderTrue"   class="banner-control banner-control-border col-md-12 no-Padding">
+                        <label>Border : </label>
+                        <switch name="switchBorderColor" ng-model="bannerCTRL.selected.isBorderTrue" on="on" off="off" class="red"></switch>
+                        <div ng-if="bannerCTRL.selected.isBorderTrue" class="colorpicker1">
+                            <input placeholder="Border Color" class="form-control marginTopSmall" colorpicker colorpicker-with-input="true" type="text" style="background:{{bannerCTRL.selected.borderColor}};" ng-model="bannerCTRL.selected.borderColor" />
+                            <input class="form-control marginTopSmall" placeholder="Border Width" type="text" ng-model="bannerCTRL.selected.borderWidth" />
+                            <select class="form-control marginTopSmall fullWidth" ng-model="bannerCTRL.selected.borderStyle">
+                                <option value="dashed">dashed</option>
+                                <option selected value="solid">solid</option>
+                                <option value="dotted">dotted</option>
+                                <option value="double">double</option>
+                                <option value="ridge">ridge</option>
+                                <option value="inset">inset</option>
+                                <option value="outset">outset</option>
+                                <option value="groove">groove</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        <div ng-if="layerCTRL.isSelectedDefined()">
+            <aside class="textControls col-md-3 noPadding center" ng-if="layerCTRL.selected.isText()">
+                <label>Paramêtres du texte</label>
+                <div class="text-control text-control-align  col-md-12">
+                    <label>Texte</label>
+                    <input   tabindex="0" type="text" class="form-control" placeholder="Saisissez votre text" ng-model="textCTRL.selected.value">
+                </div>
+                <div class="text-control text-control-item col-md-12">
+                    <label>Police du texte : </label>
+                    <select name="fontFamily" class="form-control">
+                        <option value="{{font.name}}" ng-repeat="font in fontList">{{font.name}}</option>
+                    </select>
+                </div>
+
+                <div class="text-control text-control-bg col-md-12">
+                    <label>Background color : </label>
+                    <switch name="switchTextBgColor" ng-model="textCTRL.selected.isBgTrue" on="on" off="off"></switch>
+                    <div ng-if="textCTRL.selected.isBgTrue" class="colorpicker1"><input class="form-control" colorpicker colorpicker-with-input="true"  type="text" style="background:{{textCTRL.selected.backgroundColor}};" ng-model="textCTRL.selected.backgroundColor" /></div>
+                    <div ng-if="textCTRL.selected.isBgTrue">
+                        <div class="text-control text-control-color col-md-12">
+                            <label>Espacement Interieur : </label>
+                            <div class="col-md-12">
+                                <label>Top / Bottom</label>
+                                <input class="form-control" type="text" ng-model="textCTRL.selected.paddingTopBottom" style="width:10%;float:left;padding:3px;" />
+                                <div class="col-md-6" style="margin:0 0 0 10px;" range-slider min="0" max="300" model-max="textCTRL.selected.paddingTopBottom" pin-handle="min">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label>Left / Right</label>
+                                <input class="form-control" type="text" ng-model="textCTRL.selected.paddingLeftRight" style="width:10%;float:left;padding:3px;" />
+                                <div class="col-md-6" style="margin:0 0 0 10px;" range-slider min="0" max="300" model-max="textCTRL.selected.paddingLeftRight" pin-handle="min">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="text-control text-control-color col-md-12">
+                        <label>Color : </label>
+                        <div class="colorpicker1">
+                            <input class="form-control"
+                                   colorpicker colorpicker-with-input="true" type="text" style="background:{{textCTRL.selected.color}};" ng-model="textCTRL.selected.color" />
+                        </div>
+                    </div>
+
+                    <div class="text-control text-control-taille col-md-12">
+                        <div class="slider-wrapper">
+                            <label style="float:left;">Taille de police :  </label>
+                            <input class="form-control" type="text" ng-model="textCTRL.selected.fontSize" style="width:10%;float:left;padding:3px;" />
+                            <div class="col-md-6" style="margin:0 0 0 10px;" range-slider min="5" max="100" model-max="textCTRL.selected.fontSize" pin-handle="min"></div>
+                        </div>
+                    </div>
+
+                    <div class="text-control text-control-taille col-md-12">
+
+                        <span>
+                            <input type="checkbox" ng-model="textCTRL.selected.isBold">
+                            Bold
+                        </span>
+                        <span>
+                            <input type="checkbox" ng-model="textCTRL.selected.isItalic">
+                            Italic
+                        </span>
+                        <span>
+                            <input type="checkbox" ng-model="textCTRL.selected.isUnderline">
+                            Underline
+                        </span>
+                    </div>
+
+            </aside>
+        </div>
+
+        <div>
+            <aside>
+                <h3>Slides paramétres</h3>
+            </aside>
+        </div>
+
+    </section>
+
+
+    <footer class="listSlides">
+        <div ng-click="slideCTRL.select(slide);" class="slide-item col-md-2" ng-repeat="slide in bannerCTRL.slides">
+            <div class="innerSlide">
+                <span ng-click="bannerCTRL.removeSlide($index)"> <i class="fa fa-close delete pointer"></i></span>
+                <i class="fa fa-clock-o timeAnimation pointer"></i>
+            </div>
+        </div>
+    </footer>
+</section>

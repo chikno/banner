@@ -1,0 +1,76 @@
+
+<div class="row">
+	<div class="col-md-12">
+<div id="sizesCarousel">
+
+	<div class="col-md-12">
+		<h2><i class="fa fa-arrows"></i> Listes des formats</h2>
+	</div>
+	<div class="col-md-12 noPadding">
+		<ul class="noStyle">
+				<li class="col-md-3 " ng-repeat="size in listTemplateCTRL.sizes.getSizes()">
+						<div class="size col-md-12 text-center">
+							<div class="col-md-12 noPadding  ">
+								<h3 class="noMargin sizeName">Size {{size.id}}</h3>
+								<h4 class="sizeItem">{{size.width}} x {{size.height}}</h4>
+							</div>
+							<div class="col-md-12 noPadding  ">
+								<a href="#/createTemplate"><span class="btn btn-sm btn-primary">Choisir</span></a>
+							</div>
+
+				</div>
+
+				</li>
+
+		</ul>
+	</div>
+</div>
+</div>
+	<div class="col-md-12">
+
+		<div id="listTemplates">
+
+				<div class="col-md-12">
+		<h2><i class="fa fa-file-image-o"></i> Listes des Modéles</h2>
+	</div>
+
+		<div class="col-md-12 ">
+
+					<ul class="noStyle">
+						<li class="sizeFilter" >
+							<span class="btn btn-sm btn-default">All</span>
+						</li>
+
+						<li class="sizeFilter" ng-repeat="size in listTemplateCTRL.sizes.getSizes()">
+							<span class="btn btn-sm btn-default">{{size.width}} x {{size.height}}</span>
+						</li>
+					</ul>
+		</div>
+
+	<div class="col-md-12 noPadding">
+
+		<ul class="noStyle">
+				<li class="col-md-3 marginTopSmall " ng-repeat="template in listTemplateCTRL.templates.getlistTemplates()">
+						<div class="size col-md-12 text-center" style="background:{{template.background}}">
+							<div class="col-md-12 noPadding  ">
+								<h3 style="color:{{template.textColor}}" class="noMargin sizeName">Template {{template.id}}</h3>
+								<h4 class="sizeItem">{{template.width}} x {{template.height}}</h4>
+							</div>
+							<div class="col-md-12 noPadding  ">
+								<span class="btn btn-sm btn-primary pull-left">Prévisulaiser</span>
+								<a href="#/createTemplate"><span class="btn btn-sm btn-primary pull-right">Choisir</span></a>
+							</div>
+
+				</div>
+
+				</li>
+
+		</ul>
+
+	</div>
+
+
+		</div>
+
+		</div>
+</div>

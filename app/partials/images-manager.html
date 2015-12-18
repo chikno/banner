@@ -1,0 +1,25 @@
+
+<div ng-if="createTemplateCTRL.isSelectingImage">
+    <div class="modal-backdrop fade in" modal-animation-class="fade" ng-class="{in: animate}" modal-backdrop="modal-backdrop" modal-animation="true" style="z-index: 1040;"></div>
+    <div modal-render="true" tabindex="-1" role="dialog" class="modal fade ng-isolate-scope in" modal-animation-class="fade" ng-class="{in: animate}" ng-click="close($event)" modal-window="modal-window" size="lg" index="0" animate="animate" modal-animation="true" style="z-index: 1050; display: block;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title">Images manager</h3>
+            </div>
+            <div class="modal-body">
+                <!--imageCTRL.isInList(image)-->
+                <p class="noPadding img-item-container" ng-repeat="image in createTemplateCTRL.images.getListImages()" ng-class="{'selected': imageCTRL.isInList(image) || slideCTRL.selected.isInList(image)}">
+                    <img ng-src="{{image.url}}" alt="{{image.title}}" class="img-thumbnail pointer img-manager" ng-click="imageCTRL.addToList(image)"/>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="slideCTRL.selected.addLayers(imageCTRL.list);
+                    imageCTRL.clearList();
+                    createTemplateCTRL.closeImageSelection();">OK</button>
+                <button class="btn btn-warning" ng-click="imageCTRL.clearList();
+                    createTemplateCTRL.closeImageSelection()">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>
